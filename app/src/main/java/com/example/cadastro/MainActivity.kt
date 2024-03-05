@@ -15,6 +15,8 @@ import com.example.cadastro.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
+
+    private lateinit var formulario: Formulario
     private lateinit var amb: ActivityMainBinding
 
         override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,14 +42,21 @@ class MainActivity : AppCompatActivity() {
     
             amb.salvaBt.setOnClickListener(){
                 val sexoSelecionado = if (amb.masculinoRb.isChecked) "Masculino" else "Feminino"
-                val mensagem = "Nome: ${amb.nomeEt.text}\n" +
-                        "Telefone: ${amb.telefoneEt.text}\n" +
-                        "Email: ${amb.emailEt.text}\n" +
-                        "Sexo: $sexoSelecionado\n" +
-                        "Cidade: ${amb.cidadeTv.text}\n" +
-                        "UF: ${amb.estadosSp.selectedItem}"
-    
-                Toast.makeText(this, mensagem,
+//                val mensagem = "Nome: ${amb.nomeEt.text}\n" +
+//                        "Telefone: ${amb.telefoneEt.text}\n" +
+//                        "Email: ${amb.emailEt.text}\n" +
+//                        "Sexo: $sexoSelecionado\n" +
+//                        "Cidade: ${amb.cidadeTv.text}\n" +
+//                        "UF: ${amb.estadosSp.selectedItem}"
+                var nome = amb.nomeEt.text.toString()
+                var telefone = amb.telefoneEt.text.toString()
+                var email = amb.emailEt.text.toString()
+                var sexo = sexoSelecionado
+                var cidade = amb.cidadeTv.text.toString()
+                var uf = amb.estadosSp.selectedItem.toString()
+
+                formulario = Formulario(nome, telefone, email, sexo, cidade, uf)
+                Toast.makeText(this@MainActivity, formulario.toString(),
                     Toast.LENGTH_LONG).show()
             }
     
